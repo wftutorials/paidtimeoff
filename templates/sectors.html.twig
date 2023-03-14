@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                Sectors
+            </p>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                {%  for action in actions %}
+                    <span><a href="{{ action }}">{{ action | upper }}</a></span> | &nbsp;
+                {% endfor %}
+                <p>Add new sector</p>
+                <form method="post" action="sectors.php">
+                    <input type="text" name="sector" placeholder="Sector">
+                    <input type="submit" value="Save">
+                </form>
+
+                <h3>List Sectors</h3>
+                <ul>
+                    {% for sector in sectors %}
+                        <li>{{ sector.sector }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+
+
+
+{% endblock %}

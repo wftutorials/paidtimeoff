@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h1>Comment for {{ leave.employee.name }}</h1>
+    <p><a href="timeoff.php">Back to leave</a></p>
+    <p>Comment for {{ leave.employee.name }}</p>
+    <h3>Add Comment</h3>
+    <form action="comment.php?id={{ id }}" method="post">
+        <input type="hidden" name="leaveId" value="{{ id }}">
+        Comment: <input type="text" name="comment">
+        <input type="submit" value="Add Comment">
+    </form>
+    <h3>Comments</h3>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.comment }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

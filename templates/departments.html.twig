@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title">
+            Departments
+        </p>
+    </header>
+    <div class="card-content">
+        <div class="content">
+            {%  for action in actions %}
+                <span><a href="{{ action }}">{{ action | upper }}</a></span> | &nbsp;
+            {% endfor %}
+
+            <h1>Add Department</h1>
+
+            <div class="field">
+                <form action="departments.php" method="post">
+                    <label class="label">Name</label>
+                    <div class="control">
+                        <input type="text" name="name"/>
+                    </div>
+                    <br>
+                    <label class="label">Description</label>
+                    <div class="control">
+                        <input type="text" value="" name="description"/>
+                    </div>
+                    <br>
+                    <input type="submit" value="Save" class="button is-success"/>
+                </form>
+            </div>
+
+            <h3>All Departments</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for department in departments %}
+                    <tr>
+                        <td>{{ department.name }}</td>
+                        <td>{{ department.description }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

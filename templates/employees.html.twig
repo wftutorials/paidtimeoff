@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title">
+            Employees
+        </p>
+    </header>
+    <div class="card-content">
+        <div class="content">
+            {%  for action in actions %}
+                <span><a href="{{ action }}">{{ action | upper }}</a></span> | &nbsp;
+            {% endfor %}
+
+
+            <p>Add Employee</p>
+            <form method="post" action="employee.php">
+                Name: <input type="text" name="name"/><br>
+                Email : <input type="text" name="email"/><br>
+                Department:
+                <select name="department">
+                    {% for dept in departments %}
+                        <option value="{{ dept.id }}">{{ dept.name }} ( {{ dept.description }} )</option>
+                    {% endfor %}
+                </select>
+                <br>
+                Sectors:
+                <select name="sector">
+                    {% for sector in sectors %}
+                        <option value="{{ sector.id }}">{{ sector.sector }}</option>
+                    {% endfor %}
+                </select><br>
+                <input type="submit" value="Save"/>
+            </form>
+
+            <h3>Employees</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Sector</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for employee in employees %}
+                    <tr>
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.email }}</td>
+                        <td>{{ employee.departmentModel.name }}</td>
+                        <td>{{ employee.sector.sector }}</td>
+                        <td>
+                            <a href="history.php?id={{ employee.id }}">History</a> |
+                            <a href="comments.php?id={{ employee.id }}">Comments</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

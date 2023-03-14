@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title">
+            Reports
+        </p>
+    </header>
+    <div class="card-content">
+        <div class="content">
+            {%  for action in actions %}
+                <span><a href="{{ action }}">{{ action | upper }}</a></span> | &nbsp;
+            {% endfor %}
+
+            <h3>Number of Leave taken by sector</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Sector</td>
+                        <td>Count</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key,value in sectorCount %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ value}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h3>Number of Leave days taken by sector</h3>
+            <table>
+                <thead>
+                <tr>
+                    <td>Sector</td>
+                    <td>Count</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for key,value in sectorDaysCount %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

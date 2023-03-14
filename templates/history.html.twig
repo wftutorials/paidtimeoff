@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title">
+            Employee History for {{ employee.name }}
+        </p>
+    </header>
+    <div class="card-content">
+        <div class="content">
+            <p>Employee History</p>
+            <a href="employee.php">Back</a>
+            <table>
+                <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Sector</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Reason</th>
+                    <th>Avg Days</th>
+                    <th>Comments</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for leave in leaves %}
+                    <tr>
+                        <td>{{ leave.employee.name }}</td>
+                        <td>{{ leave.sector.sector }}</td>
+                        <td>{{ leave.startDate }}</td>
+                        <td>{{ leave.endDate }}</td>
+                        <td>{{ leave.startTime }}</td>
+                        <td>{{ leave.endTime }}</td>
+                        <td>{{ leave.reason }}</td>
+                        <td>{{ leave.days }}</td>
+                        <td>{{ leave.CommentsCount }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
